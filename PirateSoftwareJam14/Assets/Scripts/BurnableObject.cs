@@ -60,6 +60,7 @@ public class BurnableObject : MonoBehaviour
         } else if (_fireLevel >= 3)
         {
             // If the fire level is greater than or equals 3 then find other flamable objects in range and try to spread the fire
+            // Only spread every x seconds, that way the player has time to control the flame.
             _currentSpreadTime -= Time.deltaTime;
 
             if (_currentSpreadTime <= 0)
@@ -73,12 +74,15 @@ public class BurnableObject : MonoBehaviour
 
     private void SpreadFire()
     {
+        // Get all objects in the target layer within the spread range of the current object
         int numObjects = Physics.OverlapSphereNonAlloc(transform.position, _spreadRange, nearbyObjects, _targetLayer);
 
+        // Do not continue with the function if there are no objects left to burn
         if (numObjects == 0) return;
 
         bool validTarget = false;
 
+        // Look for a valid target within the nearby burnable objects and set it on fire aswell
         do
         {
             int objectIndex = UnityEngine.Random.Range(0, numObjects);
@@ -96,9 +100,9 @@ public class BurnableObject : MonoBehaviour
 
     }
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
-        // Draw a yellow sphere at the transform's position
+        // Draw a yellow sphere at the objects's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _spreadRange);
     }
