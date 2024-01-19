@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class BurnableObject : MonoBehaviour
@@ -29,35 +24,22 @@ public class BurnableObject : MonoBehaviour
     [Space]
     [Header("Prefabs")]
     [SerializeField] private GameObject[] _fireEffects;
-    [SerializeField] private GameObject[] _treePrefabs;
+    [SerializeField] private GameObject[] _objectPrefabs;
 
 
     private void Update()
     {
 
         if (_fireEffects[0] != null) _fireEffects[0].SetActive(!Burnt && OnFire);
-        if (_treePrefabs[0] != null) _treePrefabs[0].SetActive(!Burnt);
+        if (_objectPrefabs[0] != null) _objectPrefabs[0].SetActive(!Burnt);
 
         if (_fireEffects[1] != null) _fireEffects[1].SetActive(Burnt && OnFire);
-        if (_treePrefabs[1] != null) _treePrefabs[1].SetActive(Burnt);
+        if (_objectPrefabs[1] != null) _objectPrefabs[1].SetActive(Burnt);
 
-        if (Burnt || !OnFire) return;
-        _currentBurnTime += Time.deltaTime;
 
-        if (_currentBurnTime >= _burnTimes[_fireLevel])
-        {
-            _currentBurnTime = 0;
-            _fireLevel++;
-            Debug.Log("Increasing Fire Level to: " + _fireLevel);
-        }
+        if (!OnFire) return;
 
-        if (_fireLevel >= 5)
-        {
-            // Object is Burnt, and can no longer be put out, or set on fire
-            Burnt = true;
-            gameObject.layer = 13;
-
-        } else if (_fireLevel >= 3)
+        if (_fireLevel >= 3)
         {
             // If the fire level is greater than or equals 3 then find other flamable objects in range and try to spread the fire
             // Only spread every x seconds, that way the player has time to control the flame.
@@ -69,6 +51,26 @@ public class BurnableObject : MonoBehaviour
                 SpreadFire();
             }
         }
+
+        if (Burnt) return;
+
+        _currentBurnTime += Time.deltaTime;
+
+        if (_currentBurnTime >= _burnTimes[_fireLevel])
+        {
+            _currentBurnTime = 0;
+            _fireLevel++;
+            Debug.Log("Increasing Fire Level to: " + _fireLevel);
+        }
+
+        if (_fireLevel >= 5)
+        {
+            // Object is Burnt, and can no longer be set on fire
+            Burnt = true;
+            gameObject.layer = 13;
+
+        }
+
     }
 
 
@@ -88,7 +90,7 @@ public class BurnableObject : MonoBehaviour
             int objectIndex = UnityEngine.Random.Range(0, numObjects);
             if (nearbyObjects[objectIndex].TryGetComponent(out BurnableObject obj))
             {
-                if(!obj.OnFire && !obj.Burnt)
+                if (!obj.OnFire && !obj.Burnt)
                 {
                     obj.OnFire = true;
                     validTarget = true;
