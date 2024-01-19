@@ -6,20 +6,23 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement Variables")]
     [SerializeField] private float _moveSpeed = 5f;
-    public Vector2 moveInput;
+    public Vector2 moveInput; 
     [SerializeField] private Transform _camera;
+    private Animator _animator;
 
     [Header("Visuals Variables")]
     [SerializeField] private GameObject _playerModel;
     [SerializeField] private float _turnSmoothTime = 0.1f; // turn smooth time set up for 
     float turnSmoothVelocity; // ref float for SmoothDampAngle Function
 
-    private bool hasInput => moveInput != Vector2.zero; // simple bool set up to check if the user is giving a movement input
+    private bool hasMoveInput => moveInput != Vector2.zero; // simple bool set up to check if the user is giving a movement input
     private Rigidbody _rb;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
+
 
         // lock the cursor on start for testing
         Cursor.lockState = CursorLockMode.Locked;
@@ -27,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (hasInput)
+        if (hasMoveInput)
         {
             // Rotate player model to direction of travel
             float targetAngle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg + _camera.eulerAngles.y;
@@ -39,6 +42,8 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             _rb.AddForce(moveDirection.normalized * (_moveSpeed * 10), ForceMode.Acceleration);
         }
+
+        _animator.SetBool("Running", hasMoveInput);
 
         // on Escape always release the cursor so that the user is never locked in the screen
 
