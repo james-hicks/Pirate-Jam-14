@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,10 +33,12 @@ public class PlayerController : MonoBehaviour
     {
         if (hasMoveInput)
         {
-            // Rotate player model to direction of travel
+            //Rotate player model to direction of travel
             float targetAngle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg + _camera.eulerAngles.y;
-            float smoothAngle = Mathf.SmoothDampAngle(_playerModel.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, _turnSmoothTime);
+            float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, _turnSmoothTime);
+            //float smoothAngle = Mathf.LerpAngle(transform.rotation.y, targetAngle, Time.time);
             transform.rotation = Quaternion.Euler(0, smoothAngle, 0);
+
 
             // TODO: If the player is using their weapon, the player must always be facing the camera direction, even when walking backwards
 
