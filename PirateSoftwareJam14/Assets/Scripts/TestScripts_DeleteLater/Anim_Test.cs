@@ -24,7 +24,18 @@ public class Anim_Test : MonoBehaviour
             animator.SetBool("Shooting", s);
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            animator.SetFloat("Blend", 0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            animator.SetFloat("Blend", 0.5f);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            animator.SetFloat("Blend", 1);
+        }
 
     }
 }
