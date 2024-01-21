@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6270478594744256660}
   - component: {fileID: 8315546734400792477}
   - component: {fileID: 4911577622496402167}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HoseSegment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4033162083131177673}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a470161e84079764280b5a54e1a89221, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -110,8 +110,8 @@ Rigidbody:
   m_GameObject: {fileID: 4033162083131177673}
   serializedVersion: 2
   m_Mass: 0.01
-  m_Drag: 10
-  m_AngularDrag: 10
+  m_Drag: 5
+  m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -132,8 +132,8 @@ SpringJoint:
   serializedVersion: 2
   m_Spring: 50
   m_Damper: 0.2
-  m_MinDistance: 0.5
-  m_MaxDistance: 0.5
+  m_MinDistance: 0.3
+  m_MaxDistance: 0.3
   m_Tolerance: 0.025
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -240,6 +240,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hose_segment
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: deff2b8dedb1f94429cad9bdf74c5dac,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: deff2b8dedb1f94429cad9bdf74c5dac,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deff2b8dedb1f94429cad9bdf74c5dac, type: 3}

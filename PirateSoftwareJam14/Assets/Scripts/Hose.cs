@@ -15,20 +15,31 @@ public class Hose : MonoBehaviour
 
     private List<GameObject> hose_Segments_Objects = new List<GameObject>();
 
-    [SerializeField] private GameObject backpack_Snap;
+    [SerializeField] public GameObject water_Snap;
 
-    public Transform water_Snap;
+    [SerializeField] public GameObject hand_Snap;
+
+    [SerializeField] public GameObject player;
+
+    [SerializeField] public GameObject playerColliderSim;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log(segments / 2 + 1);
         Debug.Log(Vector3.Distance(hose_Start.transform.position, hose_End.transform.position));
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        hose_Start.transform.position = water_Snap.transform.position;
+
+        hose_End.transform.position = hand_Snap.transform.position;
+
+        playerColliderSim.transform.position = player.transform.position;
 
         if (Vector3.Distance(hose_Start.transform.position, hose_End.transform.position) > segments / 2 + 1)
         {

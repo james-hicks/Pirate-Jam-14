@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5925812509113210815}
   - component: {fileID: 6705678232657087911}
   - component: {fileID: 3632174014159178591}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HoseSegment End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
