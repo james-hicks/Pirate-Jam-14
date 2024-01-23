@@ -11,17 +11,19 @@ public class Hose : MonoBehaviour
     [SerializeField] private GameObject hose_End;
     [SerializeField] private GameObject hose_Segment;
 
-    [SerializeField] private int segments = 0;
+    [SerializeField] public int segments = 0;
 
-    private List<GameObject> hose_Segments_Objects = new List<GameObject>();
+    [SerializeField] private List<GameObject> hose_Segments_Objects = new List<GameObject>();
+
+    [SerializeField] public GameObject playerColliderSim;
+
+    [SerializeField] private GameObject backpackHose;
+
+    [SerializeField] private GameObject hand_Snap;
 
     [SerializeField] public GameObject water_Snap;
 
-    [SerializeField] public GameObject hand_Snap;
-
-    [SerializeField] public GameObject player;
-
-    [SerializeField] public GameObject playerColliderSim;
+    [SerializeField] public GameObject playerController;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,9 @@ public class Hose : MonoBehaviour
         Debug.Log(segments / 2 + 1);
         Debug.Log(Vector3.Distance(hose_Start.transform.position, hose_End.transform.position));
 
-        
+        water_Snap = backpackHose;
+
+        ResetHose();
     }
 
     // Update is called once per frame
@@ -39,7 +43,7 @@ public class Hose : MonoBehaviour
 
         hose_End.transform.position = hand_Snap.transform.position;
 
-        playerColliderSim.transform.position = player.transform.position;
+        playerColliderSim.transform.position = playerController.transform.position;
 
         if (Vector3.Distance(hose_Start.transform.position, hose_End.transform.position) > segments / 2 + 1)
         {
@@ -48,7 +52,7 @@ public class Hose : MonoBehaviour
     }
 
     [Button("Reset Hose")]
-    private void ResetHose()
+    public void ResetHose()
     {
         hose_Start.transform.position = Vector3.zero;
 
