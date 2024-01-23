@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FirePress",
+                    "type": "Button",
+                    "id": "87a58cc5-180c-4a75-b965-35fd66b37a51",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireRelease",
+                    "type": "Button",
+                    "id": "6ca687aa-f759-4210-ae99-a81a0475d9de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -165,6 +183,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d119b9c8-1cda-46c9-8f8b-70467bbe828d",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b810eb4-38dc-42c7-9a9b-15f539e50e7c",
+                    "path": "<Mouse>/press",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FireRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
