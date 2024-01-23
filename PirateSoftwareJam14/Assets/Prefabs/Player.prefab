@@ -679,11 +679,6 @@ PrefabInstance:
       propertyPath: _freeLookCamera
       value: 
       objectReference: {fileID: 2501077407625679139}
-    - target: {fileID: 1358787382109613710, guid: abc2a49a2d129824b82fe23691b9bffd,
-        type: 3}
-      propertyPath: _hoseMaxCapacity
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 1444438841975020883, guid: abc2a49a2d129824b82fe23691b9bffd,
         type: 3}
       propertyPath: m_Layer

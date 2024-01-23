@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BurnableObject : MonoBehaviour
@@ -6,6 +7,8 @@ public class BurnableObject : MonoBehaviour
 
     [Tooltip("Fire level increases as the object is on fire, once the object is a level 3 fire, it may start spreading to other objects.")]
     [SerializeField] private int _fireLevel;
+    [SerializeField] private int _fireHP = 500;
+    [SerializeField] private int _currentFireHP;
     [SerializeField] private float _spreadCooldown = 60f;
     [SerializeField] private float _spreadRange = 5f;
     [SerializeField] private LayerMask _targetLayer;
@@ -20,12 +23,36 @@ public class BurnableObject : MonoBehaviour
 
     private float _currentBurnTime = 0;
     private float _currentSpreadTime = 0;
+    private bool _reIgniting = false;
 
     [Space]
     [Header("Prefabs")]
     [SerializeField] private GameObject[] _fireEffects;
     [SerializeField] private GameObject[] _objectPrefabs;
 
+
+    public void SetObjectOnFire()
+    {
+        _currentFireHP = _fireHP;
+        OnFire = true;
+    }
+
+    public void PutOutFire()
+    {
+        OnFire = false;
+        if (!Burnt)
+        {
+            _fireLevel = 0;
+        }
+    }
+
+    private void Start()
+    {
+        if (OnFire)
+        {
+            _currentFireHP = _fireHP;
+        }
+    }
 
     private void Update()
     {
@@ -37,7 +64,16 @@ public class BurnableObject : MonoBehaviour
         if (_objectPrefabs[1] != null) _objectPrefabs[1].SetActive(Burnt);
 
 
-        if (!OnFire) return;
+        if (!OnFire)
+        {
+            if (Burnt && !_reIgniting)
+            {
+                StartCoroutine(ReIgnite(_spreadCooldown/4));
+            }
+
+            return;
+        }
+
 
         if (_fireLevel >= 3)
         {
@@ -73,6 +109,26 @@ public class BurnableObject : MonoBehaviour
 
     }
 
+    private IEnumerator ReIgnite(float t)
+    {
+        _reIgniting = true;
+        bool relit = false;
+        do
+        {
+            yield return new WaitForSeconds(t);
+            int i = Random.Range(0, 2);
+            Debug.Log(i);
+            if (i == 1)
+            {
+                SetObjectOnFire();
+                relit = true;
+            }
+
+        } while(!relit);
+        _reIgniting = false;
+
+    }
+
 
     private void SpreadFire()
     {
@@ -92,7 +148,7 @@ public class BurnableObject : MonoBehaviour
             {
                 if (!obj.OnFire && !obj.Burnt)
                 {
-                    obj.OnFire = true;
+                    obj.SetObjectOnFire();
                     validTarget = true;
                 }
             }
@@ -100,6 +156,20 @@ public class BurnableObject : MonoBehaviour
 
         Debug.Log("Spread Fire");
 
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (!OnFire) return;
+
+        //Debug.Log("Water Hit Object");
+        _currentFireHP--;
+
+        if(_currentFireHP < 1)
+        {
+            PutOutFire();
+            // TODO: Give player money when they put out a fire
+        }
     }
 
     private void OnDrawGizmosSelected()

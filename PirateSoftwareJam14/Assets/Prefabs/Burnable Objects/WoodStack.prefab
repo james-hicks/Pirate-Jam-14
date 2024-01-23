@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireLevel: 0
+  _fireHP: 200
+  _currentFireHP: 0
   _spreadCooldown: 60
   _spreadRange: 5
   _targetLayer:
