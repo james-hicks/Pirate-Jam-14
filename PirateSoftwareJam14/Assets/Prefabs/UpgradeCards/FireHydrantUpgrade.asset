@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d1ff9fc85b1d94d97d665aa3c060d3, type: 3}
+  m_Name: FireHydrantUpgrade
+  m_EditorClassIdentifier: 
+  Background: {fileID: 21300000, guid: 8ab18119dfc39b541acda03b0d9b0c8a, type: 3}
+  Title: Hydrants
+  TextColor: {r: 0, g: 0, b: 0, a: 1}
+  Art: {fileID: 21300000, guid: 649af1a93b208db4f9e912ca360eb986, type: 3}
+  Price: 150
+  Description: More hydrants means more water and remember you can tether to them.
