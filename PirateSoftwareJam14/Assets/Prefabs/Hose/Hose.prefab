@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3878081442136194415}
   m_Layer: 0
   m_Name: Hose
-  m_TagString: Untagged
+  m_TagString: Hose
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,11 +53,11 @@ MonoBehaviour:
     type: 3}
   segments: 30
   hose_Segments_Objects: []
+  playerColliderSim: {fileID: 7985894058031433784}
   backpackHose: {fileID: 0}
   hand_Snap: {fileID: 0}
   water_Snap: {fileID: 0}
-  player: {fileID: 0}
-  playerColliderSim: {fileID: 7985894058031433784}
+  playerController: {fileID: 0}
 --- !u!1 &7985894058031433784
 GameObject:
   m_ObjectHideFlags: 0

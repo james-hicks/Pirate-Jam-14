@@ -152,6 +152,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void regainWater(float refillAmount)
+    {
+        _currentHoseCapacity += refillAmount;
+    }
 
     #region Inputs
     // get the movement input from the PlayerInput in the Settings folder

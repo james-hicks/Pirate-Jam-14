@@ -25,6 +25,8 @@ public class Hose : MonoBehaviour
 
     [SerializeField] public GameObject playerController;
 
+    private bool attached = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,9 +47,15 @@ public class Hose : MonoBehaviour
 
         playerColliderSim.transform.position = playerController.transform.position;
 
-        if (Vector3.Distance(hose_Start.transform.position, hose_End.transform.position) > segments / 2 + 1)
+        if (attached && Vector3.Distance(hose_Start.transform.position, hose_End.transform.position) > segments / 2 + 1)
         {
             Debug.Log("Too Far");
+            water_Snap = backpackHose;
+            attached = false;
+        }
+        else if (attached)
+        {
+            PlayerController.PlayerInstance.regainWater(2 * Time.deltaTime);
         }
     }
 
@@ -116,4 +124,11 @@ public class Hose : MonoBehaviour
 
         ResetHose();
     }
+
+    public void Attach(GameObject attach)
+    {
+        water_Snap = attach;
+        attached = true;
+    }
+
 }
