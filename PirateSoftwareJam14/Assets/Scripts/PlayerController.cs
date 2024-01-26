@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider _waterSlider;
     [SerializeField] private Slider _staminaSlider;
     [SerializeField] private TextMeshProUGUI _moneyText;
+    [SerializeField] private GameObject _pauseMenu;
 
     [Space]
     public Vector2 moveInput;
@@ -49,6 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool hasMoveInput => moveInput != Vector2.zero; // simple bool set up to check if the user is giving a movement input
 
     private Rigidbody _rb;
+
+    private bool _gameIsPaused;
 
     private void Awake()
     {
@@ -152,6 +155,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnResume()
+    {
+        if (!_gameIsPaused) return;
+
+        _pauseMenu.SetActive(false);
+        _gameIsPaused = false;
+        Time.timeScale = 1.0f;
+    }
+
     public void regainWater(float refillAmount)
     {
         _currentHoseCapacity += refillAmount;
@@ -191,6 +203,23 @@ public class PlayerController : MonoBehaviour
     private void OnInteract(InputValue value)
     {
         // TODO: Interact
+    }
+
+    private void OnPause(InputValue value)
+    {
+        if(_gameIsPaused)
+        {
+            _gameIsPaused = false;
+            _pauseMenu?.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            _gameIsPaused = true;
+            _pauseMenu?.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
     }
 
     #endregion

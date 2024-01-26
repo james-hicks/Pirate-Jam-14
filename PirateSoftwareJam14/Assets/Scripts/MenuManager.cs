@@ -19,6 +19,11 @@ public class MenuManager : MonoBehaviour
         throw new NotImplementedException();
     }
 
+    public void OnResume()
+    {
+        PlayerController.PlayerInstance.OnResume();
+    }
+
     public void OnHTP()
     {
         Menu.SetActive(false);
@@ -35,5 +40,10 @@ public class MenuManager : MonoBehaviour
     {
         Menu.SetActive(true);
         HTPMenu.SetActive(false);
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
