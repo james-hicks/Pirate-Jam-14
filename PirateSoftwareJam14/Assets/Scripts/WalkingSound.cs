@@ -21,7 +21,7 @@ public class WalkingSound : MonoBehaviour
     {
         AudioClip clip = FootstepSFX[(int)Random.RandomRange(0,FootstepSFX.Length)];
         source.clip = clip;
-        source.pitch = 1f;
+        source.pitch = .8f;
         source.Play();
 
     }
@@ -29,7 +29,7 @@ public class WalkingSound : MonoBehaviour
     {
         AudioClip clip = Footstep2SFX[(int)Random.RandomRange(0, FootstepSFX.Length)];
         source.clip = clip;
-        source.pitch = 1f;
+        source.pitch = .8f;
         source.Play();
 
     }
@@ -37,7 +37,7 @@ public class WalkingSound : MonoBehaviour
     {
         AudioClip clip = FootstepSFX[(int)Random.RandomRange(0, FootstepSFX.Length)];
         source.clip = clip;
-        source.pitch = 1.25f;
+        source.pitch = 1;
         source.Play();
 
     }
@@ -45,7 +45,7 @@ public class WalkingSound : MonoBehaviour
     {
         AudioClip clip = Footstep2SFX[(int)Random.RandomRange(0, FootstepSFX.Length)];
         source.clip = clip;
-        source.pitch = 1.25f;
+        source.pitch = 1;
         source.Play();
 
     }
