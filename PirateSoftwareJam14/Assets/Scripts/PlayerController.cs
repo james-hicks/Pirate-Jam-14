@@ -1,4 +1,5 @@
 using Cinemachine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -39,7 +40,9 @@ public class PlayerController : MonoBehaviour
     [Header("HUD Elements")]
     [SerializeField] private Slider _waterSlider;
     [SerializeField] private Slider _staminaSlider;
+    [SerializeField] private TextMeshProUGUI _moneyText;
 
+    [Space]
     public Vector2 moveInput;
     private Animator _animator;
     private bool weaponIsFiring => Firing && _currentHoseCapacity > 0;
@@ -118,6 +121,7 @@ public class PlayerController : MonoBehaviour
     {
         _waterSlider.value = _currentHoseCapacity;
         _staminaSlider.value = _stamina;
+        _moneyText.text = $"${Money}";
 
 
         if (Firing && _currentHoseCapacity > 0)
@@ -135,7 +139,9 @@ public class PlayerController : MonoBehaviour
             _isSprinting = false;
         }
 
-        if(_isSprinting)
+        _animator.SetBool("Sprinting", _isSprinting);
+
+        if (_isSprinting)
         {
             _stamina -= Time.deltaTime * 10;
         }

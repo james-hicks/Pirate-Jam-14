@@ -333,6 +333,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2501077408394989534}
     m_Modifications:
+    - target: {fileID: 3532699264891886938, guid: fac9915319141bb4fb26307b074b8068,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3532699265469511943, guid: fac9915319141bb4fb26307b074b8068,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -463,6 +468,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7407672328132660620, guid: fac9915319141bb4fb26307b074b8068,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac9915319141bb4fb26307b074b8068, type: 3}
 --- !u!114 &1335683378211851569 stripped
@@ -493,6 +503,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6691349618581074032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9174840356496498715, guid: fac9915319141bb4fb26307b074b8068,
+    type: 3}
+  m_PrefabInstance: {fileID: 2562521486239469675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3499598952367472952
@@ -686,6 +708,11 @@ PrefabInstance:
       propertyPath: _stamina
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1358787382109613710, guid: abc2a49a2d129824b82fe23691b9bffd,
+        type: 3}
+      propertyPath: _moneyText
+      value: 
+      objectReference: {fileID: 6691349618581074032}
     - target: {fileID: 1358787382109613710, guid: abc2a49a2d129824b82fe23691b9bffd,
         type: 3}
       propertyPath: _moveSpeed
