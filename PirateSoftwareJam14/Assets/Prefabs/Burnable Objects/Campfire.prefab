@@ -90,6 +90,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4623639662721138665}
     m_Modifications:
+    - target: {fileID: 2787238223673312181, guid: 02e11af465a3e154bae56848de1b22fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3607451794071305544, guid: 02e11af465a3e154bae56848de1b22fa,
         type: 3}
       propertyPath: m_ColorTemperature
@@ -180,6 +185,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 5529477409458829002, guid: 02e11af465a3e154bae56848de1b22fa,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529477409458829002, guid: 02e11af465a3e154bae56848de1b22fa,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529477409458829002, guid: 02e11af465a3e154bae56848de1b22fa,
+        type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0.13027778
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02e11af465a3e154bae56848de1b22fa, type: 3}
 --- !u!1 &1587027053428422841 stripped
@@ -201,6 +221,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4623639662721138665}
     m_Modifications:
+    - target: {fileID: 2787238223673312181, guid: 02e11af465a3e154bae56848de1b22fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3607451794071305544, guid: 02e11af465a3e154bae56848de1b22fa,
         type: 3}
       propertyPath: m_ColorTemperature
@@ -290,6 +315,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529477409458829002, guid: 02e11af465a3e154bae56848de1b22fa,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5529477409458829002, guid: 02e11af465a3e154bae56848de1b22fa,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02e11af465a3e154bae56848de1b22fa, type: 3}
