@@ -39,10 +39,10 @@ public class CardConstructor : MonoBehaviour
 
     public void Buy()
     {
-        if (CardList.instance.money >= Card.Price)
+        if (PlayerController.PlayerInstance.Money >= Card.Price)
         {
-            CardList.instance.money -= Card.Price;
-            money.text = $"{CardList.instance.money}$";
+            PlayerController.PlayerInstance.Money -= Card.Price;
+            money.text = $"{PlayerController.PlayerInstance.Money}$";
             CardList.instance.ActiveCards.Add(Card);
             CardList.instance.upgradeCards.Remove(Card);
             TextBox.text = "Thank you for your money. Maybe buy some more of my junk, I mean upgrades";

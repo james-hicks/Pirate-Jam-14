@@ -1195,6 +1195,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1614051520445940539, guid: 1926588b25527c5448de200e8d383c0a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614051520445940539, guid: 1926588b25527c5448de200e8d383c0a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2393764526670096675, guid: 1926588b25527c5448de200e8d383c0a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1285,6 +1295,21 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227062557958798260, guid: 1926588b25527c5448de200e8d383c0a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227062557958798260, guid: 1926588b25527c5448de200e8d383c0a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153862987143864530, guid: 1926588b25527c5448de200e8d383c0a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -22.878662
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1926588b25527c5448de200e8d383c0a, type: 3}

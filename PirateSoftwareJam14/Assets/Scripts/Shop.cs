@@ -18,7 +18,7 @@ public class Shop : MonoBehaviour
     {
         Random.seed = Seed;
 
-        money.text = $"{CardList.instance.money}$";
+        money.text = $"{PlayerController.PlayerInstance.Money}$";
 
         bool t = true;
         if (CardList.instance.upgradeCards.Count >= 3)

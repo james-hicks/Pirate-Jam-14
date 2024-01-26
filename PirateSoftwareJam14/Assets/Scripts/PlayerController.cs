@@ -6,18 +6,29 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Variables")]
+    public static PlayerController PlayerInstance { get => _instance; }
+    private static PlayerController _instance;
+
+    [Header("Player Variables")]
     [SerializeField] private float _moveSpeed = 5f;
-    public Vector2 moveInput;
+    [SerializeField] private float _sprintMultiplier;
+    [SerializeField] private float _stamina = 100;
+    private bool _isSprinting;
+
     [SerializeField] private Transform _camera;
-    private Animator _animator;
+
+    [Space]
+    public int Money = 0;
+
+    [Space]
+    [SerializeField] private float _gravityScale = 1f;
+    public static float GlobalGravity = -9.81f;
 
     [Header("Visuals Variables")]
     [SerializeField] private GameObject _playerModel;
     [SerializeField] private float _turnSmoothTime = 0.1f; // turn smooth time set up for 
     [SerializeField] private CinemachineFreeLook _freeLookCamera;
     float turnSmoothVelocity; // ref float for SmoothDampAngle Function
-
 
     [Header("Hose Variables")]
     [SerializeField] private float _hoseMaxCapacity;
@@ -27,10 +38,22 @@ public class PlayerController : MonoBehaviour
 
     [Header("HUD Elements")]
     [SerializeField] private Slider _waterSlider;
+    [SerializeField] private Slider _staminaSlider;
 
+    public Vector2 moveInput;
+    private Animator _animator;
     private bool weaponIsFiring => Firing && _currentHoseCapacity > 0;
     private bool hasMoveInput => moveInput != Vector2.zero; // simple bool set up to check if the user is giving a movement input
+
     private Rigidbody _rb;
+
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+        else
+            Destroy(this);
+    }
 
     private void Start()
     {
@@ -38,6 +61,7 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _currentHoseCapacity = _hoseMaxCapacity;
         _waterSlider.maxValue = _hoseMaxCapacity;
+        _rb.useGravity = false;
 
 
         // lock the cursor on start for testing
@@ -58,7 +82,15 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, smoothAngle, 0);
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            _rb.AddForce(moveDirection.normalized * (_moveSpeed * 10), ForceMode.Acceleration);
+            if(!_isSprinting)
+            {
+                _rb.AddForce(moveDirection.normalized * (_moveSpeed * 10), ForceMode.Acceleration);
+            }
+            else
+            {
+                _rb.AddForce(moveDirection.normalized * (_moveSpeed * 10 * _sprintMultiplier), ForceMode.Acceleration);
+            }
+
         }
 
         //If the player is using their weapon, the player must always be facing the camera direction, even when walking backwards
@@ -69,6 +101,10 @@ public class PlayerController : MonoBehaviour
         }
 
         _animator.SetBool("Running", hasMoveInput);
+
+        // Apply gravity
+        Vector3 gravity = GlobalGravity * _gravityScale * Vector3.up;
+        _rb.AddForce(gravity, ForceMode.Acceleration);
 
         // on Escape always release the cursor so that the user is never locked in the screen
 
@@ -81,6 +117,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _waterSlider.value = _currentHoseCapacity;
+        _staminaSlider.value = _stamina;
 
 
         if (Firing && _currentHoseCapacity > 0)
@@ -91,6 +128,20 @@ public class PlayerController : MonoBehaviour
         else
         {
             _hoseParticleEffect.Stop();
+        }
+
+        if(_stamina <= 0 || weaponIsFiring)
+        {
+            _isSprinting = false;
+        }
+
+        if(_isSprinting)
+        {
+            _stamina -= Time.deltaTime * 10;
+        }
+        else
+        {
+            _stamina += Time.deltaTime * 5;
         }
 
     }
@@ -112,6 +163,24 @@ public class PlayerController : MonoBehaviour
     private void OnFireRelease(InputValue value)
     {
         Firing = false;
+    }
+
+    private void OnSprintPress(InputValue value)
+    {
+        if(_stamina > 0)
+        {
+            _isSprinting = true;
+        }
+    }
+
+    private void OnSprintRelease(InputValue value)
+    {
+        _isSprinting = false;
+    }
+
+    private void OnInteract(InputValue value)
+    {
+        // TODO: Interact
     }
 
     #endregion

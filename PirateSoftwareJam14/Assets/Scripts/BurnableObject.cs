@@ -40,6 +40,7 @@ public class BurnableObject : MonoBehaviour
     public void PutOutFire()
     {
         OnFire = false;
+        PlayerController.PlayerInstance.Money += Random.Range(10, 25);
         if (!Burnt)
         {
             _fireLevel = 0;
@@ -139,6 +140,7 @@ public class BurnableObject : MonoBehaviour
         if (numObjects == 0) return;
 
         bool validTarget = false;
+        int maxTry = 5;
 
         // Look for a valid target within the nearby burnable objects and set it on fire aswell
         do
@@ -152,7 +154,9 @@ public class BurnableObject : MonoBehaviour
                     validTarget = true;
                 }
             }
-        } while (!validTarget);
+            maxTry--;
+
+        } while (!validTarget || maxTry > 0);
 
         Debug.Log("Spread Fire");
 

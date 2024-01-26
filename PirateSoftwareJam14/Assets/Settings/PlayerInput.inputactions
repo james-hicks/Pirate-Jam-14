@@ -29,7 +29,7 @@
                     "id": "87a58cc5-180c-4a75-b965-35fd66b37a51",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -38,7 +38,34 @@
                     "id": "6ca687aa-f759-4210-ae99-a81a0475d9de",
                     "expectedControlType": "Button",
                     "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SprintPress",
+                    "type": "Button",
+                    "id": "ebdbb9d1-83c6-412f-b36c-da617a409ae0",
+                    "expectedControlType": "Button",
+                    "processors": "",
                     "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SprintRelease",
+                    "type": "Button",
+                    "id": "b34aced2-a840-4a01-b18c-a0e66001556e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "3ce9886f-1fd2-4d1d-86f5-d5b49552506b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -199,12 +226,67 @@
                 },
                 {
                     "name": "",
+                    "id": "1c46ae89-0e7a-4c6c-908d-0266b5ac18c3",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirePress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8b810eb4-38dc-42c7-9a9b-15f539e50e7c",
                     "path": "<Mouse>/press",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "FireRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b4717f6-adfb-4e4f-94b4-82d2d4acd5f8",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FireRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3856e91c-e86c-4d40-9762-d724e54f09be",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SprintPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eafc3431-24d9-4524-979f-f7a4734be713",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SprintRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac1b3d98-e2b5-47e8-8a68-32942aeab300",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

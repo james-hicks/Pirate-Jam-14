@@ -5,7 +5,6 @@ public class CardList : MonoBehaviour
 {
     public static CardList instance { get; private set; }
 
-    public int money;
     public List<UpgradeCards> upgradeCards;
     public List<UpgradeCards> ActiveCards;
 
