@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _interactPrompt;
+    [SerializeField] private TextMeshProUGUI _fireText;
+    [SerializeField] private TextMeshProUGUI _housesText;
 
     [Space]
     public Vector2 moveInput;
@@ -51,6 +53,8 @@ public class PlayerController : MonoBehaviour
     private bool hasMoveInput => moveInput != Vector2.zero; // simple bool set up to check if the user is giving a movement input
 
     private Rigidbody _rb;
+    public static int TotalFires = 0;
+    public static int HousesLeft = 1;
 
     private bool _gameIsPaused;
 
@@ -126,7 +130,14 @@ public class PlayerController : MonoBehaviour
         _waterSlider.value = _currentHoseCapacity;
         _staminaSlider.value = _stamina;
         _moneyText.text = $"${Money}";
+        _fireText.text = TotalFires.ToString();
+        _housesText.text = HousesLeft.ToString();
 
+
+        if(HousesLeft <= 0)
+        {
+            Debug.LogError("GAME OVER");
+        }
 
         if (Firing && _currentHoseCapacity > 0)
         {

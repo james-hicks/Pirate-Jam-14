@@ -30,16 +30,21 @@ public class BurnableObject : MonoBehaviour
     [SerializeField] private GameObject[] _fireEffects;
     [SerializeField] private GameObject[] _objectPrefabs;
 
+    [Space]
+    public bool isHouse = false;
+
 
     public void SetObjectOnFire()
     {
         _currentFireHP = _fireHP;
+        PlayerController.TotalFires++;
         OnFire = true;
     }
 
     public void PutOutFire()
     {
         OnFire = false;
+        PlayerController.TotalFires--;
         PlayerController.PlayerInstance.Money += Random.Range(10, 25);
         if (!Burnt)
         {
@@ -104,6 +109,7 @@ public class BurnableObject : MonoBehaviour
         {
             // Object is Burnt, and can no longer be set on fire
             Burnt = true;
+            if (isHouse) PlayerController.HousesLeft--;
             gameObject.layer = 13;
 
         }

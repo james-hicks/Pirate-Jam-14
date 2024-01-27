@@ -14534,6 +14534,7 @@ MonoBehaviour:
   _objectPrefabs:
   - {fileID: 715624185565885287}
   - {fileID: 5909179481452081400}
+  isHouse: 0
 --- !u!65 &8980423811463451622
 BoxCollider:
   m_ObjectHideFlags: 0
