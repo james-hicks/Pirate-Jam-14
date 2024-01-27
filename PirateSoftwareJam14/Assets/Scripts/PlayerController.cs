@@ -180,6 +180,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!_gameIsPaused) return;
 
+        Cursor.lockState = CursorLockMode.Locked;
+
         _pauseMenu.SetActive(false);
         _gameIsPaused = false;
         Time.timeScale = 1.0f;
@@ -230,6 +232,11 @@ public class PlayerController : MonoBehaviour
     private void OnFirePress(InputValue value)
     {
         Firing = true;
+
+        if(!_gameIsPaused)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     private void OnFireRelease(InputValue value)
