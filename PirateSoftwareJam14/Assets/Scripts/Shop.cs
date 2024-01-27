@@ -13,10 +13,13 @@ public class Shop : MonoBehaviour
 
     private int[] ThreeCards = new int[3];
 
+    private void Awake()
+    {
 
+        Random.seed = Seed;
+    }
     private void Start()
     {
-        Random.seed = Seed;
 
         money.text = $"{PlayerController.PlayerInstance.Money}$";
 
@@ -61,6 +64,15 @@ public class Shop : MonoBehaviour
 
         Debug.Log($"{storeIndex}, {index}");
         ShopPlaces[storeIndex].GetComponent<CardConstructor>().ConstructCard();
+    }
+
+    public void TryResetUpgrades()
+    {
+
+        if (PlayerController.PlayerInstance.Money >= 100)
+        {
+            Start();
+        }
     }
 
 }
