@@ -50,8 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  moveInput: {x: 0, y: 0}
+  _sprintMultiplier: 0
+  _stamina: 100
   _camera: {fileID: 0}
+  Money: 0
+  _gravityScale: 1
   _playerModel: {fileID: 0}
   _turnSmoothTime: 0.1
   _freeLookCamera: {fileID: 0}
@@ -60,6 +63,15 @@ MonoBehaviour:
   Firing: 0
   _hoseParticleEffect: {fileID: 66688417653648432}
   _waterSlider: {fileID: 0}
+  _staminaSlider: {fileID: 0}
+  _moneyText: {fileID: 0}
+  _pauseMenu: {fileID: 0}
+  _interactPrompt: {fileID: 0}
+  _fireText: {fileID: 0}
+  _housesText: {fileID: 0}
+  SmokeEffect: {fileID: 5214482964936036797, guid: aab72237b1a9f2042b5a95a2a22537fc,
+    type: 3}
+  moveInput: {x: 0, y: 0}
 --- !u!136 &6595352153770881433
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -146,17 +158,17 @@ PrefabInstance:
     - target: {fileID: 3501072100495942814, guid: 618bdaee6f06e494a8e0e50424308b5f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.23
+      value: 0.256
       objectReference: {fileID: 0}
     - target: {fileID: 3501072100495942814, guid: 618bdaee6f06e494a8e0e50424308b5f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.742
+      value: 2.653
       objectReference: {fileID: 0}
     - target: {fileID: 3501072100495942814, guid: 618bdaee6f06e494a8e0e50424308b5f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.668
+      value: 2.394
       objectReference: {fileID: 0}
     - target: {fileID: 3501072100495942814, guid: 618bdaee6f06e494a8e0e50424308b5f,
         type: 3}

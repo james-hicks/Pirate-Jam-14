@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _interactPrompt;
     [SerializeField] private TextMeshProUGUI _fireText;
     [SerializeField] private TextMeshProUGUI _housesText;
+    public GameObject SmokeEffect;
 
     [Space]
     public Vector2 moveInput;
