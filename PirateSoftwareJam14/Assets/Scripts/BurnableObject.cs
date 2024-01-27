@@ -90,7 +90,7 @@ public class BurnableObject : MonoBehaviour
             if (_currentSpreadTime <= 0)
             {
                 _currentSpreadTime = _spreadCooldown;
-                SpreadFire();
+                StartCoroutine(SpreadFire());
             }
         }
 
@@ -137,13 +137,13 @@ public class BurnableObject : MonoBehaviour
     }
 
 
-    private void SpreadFire()
+    private IEnumerator SpreadFire()
     {
         // Get all objects in the target layer within the spread range of the current object
         int numObjects = Physics.OverlapSphereNonAlloc(transform.position, _spreadRange, nearbyObjects, _targetLayer);
 
         // Do not continue with the function if there are no objects left to burn
-        if (numObjects == 0) return;
+        if (numObjects == 0) yield break;
 
         bool validTarget = false;
         int maxTry = 5;
@@ -161,6 +161,8 @@ public class BurnableObject : MonoBehaviour
                 }
             }
             maxTry--;
+
+            yield return new WaitForEndOfFrame();
 
         } while (!validTarget || maxTry > 0);
 
