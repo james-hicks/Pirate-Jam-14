@@ -16,6 +16,7 @@ public class AttachHose : MonoBehaviour
         if (other.gameObject.tag == "Hose")
         {
             Debug.Log("YAY");
+            PlayerController.PlayerInstance.SetInteractPrompt(true);
             hose = other.gameObject.GetComponentInParent<Hose>();
             interact.action.performed += Attach;
         }
@@ -28,12 +29,14 @@ public class AttachHose : MonoBehaviour
         if (other.gameObject.tag == "Hose")
         {
             interact.action.performed -= Attach;
+            PlayerController.PlayerInstance.SetInteractPrompt(false);
         }
     }
 
     private void Attach(InputAction.CallbackContext context)
     {
         hose.Attach(hoseAttach);
+        PlayerController.PlayerInstance.SetInteractPrompt(false);
     }
 
 }

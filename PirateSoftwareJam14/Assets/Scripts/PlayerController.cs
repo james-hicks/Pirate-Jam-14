@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider _staminaSlider;
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _interactPrompt;
 
     [Space]
     public Vector2 moveInput;
@@ -167,6 +168,11 @@ public class PlayerController : MonoBehaviour
     public void regainWater(float refillAmount)
     {
         _currentHoseCapacity += refillAmount;
+    }
+
+    public void SetInteractPrompt(bool b)
+    {
+        _interactPrompt.SetActive(b);
     }
 
     #region Inputs
