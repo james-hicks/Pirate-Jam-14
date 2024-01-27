@@ -21,6 +21,8 @@ public class InteractShop : MonoBehaviour
         if (other.gameObject.tag == "Hose")
         {
             interact.action.performed += OpenShop;
+
+            PlayerController.PlayerInstance.SetInteractPrompt(true);
         }
     }
 
@@ -31,6 +33,8 @@ public class InteractShop : MonoBehaviour
         if (other.gameObject.tag == "Hose")
         {
             interact.action.performed -= OpenShop;
+
+            PlayerController.PlayerInstance.SetInteractPrompt(false);
         }
     }
 
