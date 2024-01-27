@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -46,6 +47,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _fireText;
     [SerializeField] private TextMeshProUGUI _housesText;
     public GameObject SmokeEffect;
+    [Space]
+    [SerializeField] private UpgradeCards _hydrantUpgrade;
+    [SerializeField] private GameObject _hydrantsUpgraded;
+    [SerializeField] private UpgradeCards _packUpgrade;
+
+
 
     [Space]
     public Vector2 moveInput;
@@ -55,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rb;
     public static int TotalFires = 0;
-    public static int HousesLeft = 1;
+    public static int HousesLeft = 15;
 
     private bool _gameIsPaused;
 
@@ -75,6 +82,7 @@ public class PlayerController : MonoBehaviour
         _waterSlider.maxValue = _hoseMaxCapacity;
         _rb.useGravity = false;
 
+        StartCoroutine(CheckForUpgrades());
 
         // lock the cursor on start for testing
         Cursor.lockState = CursorLockMode.Locked;
@@ -94,7 +102,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, smoothAngle, 0);
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            if(!_isSprinting)
+            if (!_isSprinting)
             {
                 _rb.AddForce(moveDirection.normalized * (_moveSpeed * 10), ForceMode.Acceleration);
             }
@@ -135,7 +143,7 @@ public class PlayerController : MonoBehaviour
         _housesText.text = HousesLeft.ToString();
 
 
-        if(HousesLeft <= 0)
+        if (HousesLeft <= 0)
         {
             Debug.LogError("GAME OVER");
         }
@@ -150,7 +158,7 @@ public class PlayerController : MonoBehaviour
             _hoseParticleEffect.Stop();
         }
 
-        if(_stamina <= 0 || weaponIsFiring)
+        if (_stamina <= 0 || weaponIsFiring)
         {
             _isSprinting = false;
         }
@@ -187,6 +195,30 @@ public class PlayerController : MonoBehaviour
         _interactPrompt.SetActive(b);
     }
 
+    private IEnumerator CheckForUpgrades()
+    {
+        bool t = true;
+
+        while (t)
+        {
+            foreach (UpgradeCards c in CardList.instance.ActiveCards)
+            {
+                yield return null;
+                if (c == _hydrantUpgrade)
+                {
+                    _hydrantsUpgraded.SetActive(true);
+                    t = false; break;
+                }else if (c == _packUpgrade)
+                {
+                    _hoseMaxCapacity += 50;
+                }
+
+            }
+            yield return null;
+        }
+    }
+
+
     #region Inputs
     // get the movement input from the PlayerInput in the Settings folder
     // set up for both controller and WASD currently, the sensitivity is not calibrated for controller however
@@ -207,7 +239,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnSprintPress(InputValue value)
     {
-        if(_stamina > 0)
+        if (_stamina > 0)
         {
             _isSprinting = true;
         }
@@ -225,7 +257,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnPause(InputValue value)
     {
-        if(_gameIsPaused)
+        if (_gameIsPaused)
         {
             _gameIsPaused = false;
             _pauseMenu?.SetActive(false);
