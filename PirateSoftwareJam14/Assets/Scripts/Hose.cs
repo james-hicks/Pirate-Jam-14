@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using static UnityEngine.Rendering.HableCurve;
 
 public class Hose : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class Hose : MonoBehaviour
 
     private bool attached = false;
 
+    [SerializeField] public UpgradeCards HoseLength;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,8 @@ public class Hose : MonoBehaviour
         Debug.Log(Vector3.Distance(hose_Start.transform.position, hose_End.transform.position));
 
         water_Snap = backpackHose;
+
+        StartCoroutine(CheckHoseLength());
 
         ResetHose();
     }
@@ -47,7 +52,7 @@ public class Hose : MonoBehaviour
 
         playerColliderSim.transform.position = playerController.transform.position;
 
-        if (attached && Vector3.Distance(hose_Start.transform.position, hose_End.transform.position) > segments / 2 + 1)
+        if (attached && Vector3.Distance(hose_Start.transform.position, hose_End.transform.position) > segments / 1.5)
         {
             Debug.Log("Too Far");
             water_Snap = backpackHose;
@@ -131,4 +136,25 @@ public class Hose : MonoBehaviour
         attached = true;
     }
 
+    IEnumerator CheckHoseLength()
+    {
+        bool t = true;
+
+        while (t)
+        {
+            foreach (UpgradeCards c in CardList.instance.ActiveCards)
+            {
+                yield return null;
+                if (c == HoseLength)
+                {
+                    Debug.Log("YOU GOT HOSED");
+                    segments += 25;
+                    ResetHose();
+                    t = false; break;
+                }
+
+            }
+            yield return null;
+        }
+    }
 }

@@ -58,6 +58,7 @@ MonoBehaviour:
   hand_Snap: {fileID: 0}
   water_Snap: {fileID: 0}
   playerController: {fileID: 0}
+  HoseLength: {fileID: 11400000, guid: 4300a8ca396ad0449939b856e82c3cb4, type: 2}
 --- !u!1 &7985894058031433784
 GameObject:
   m_ObjectHideFlags: 0
